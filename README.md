@@ -1,7 +1,7 @@
 # excel-to-json
-Command line utility to convert excel files (all of them) to json. Uses Apache POI (https://poi.apache.org) to convert files. I use this tool within php, since there are only implementation which are (a) too much memory consuming and/or (b) slow. Or don't support all required excel formats. 
+Command line utility to convert excel files (all of them) to json. Uses Apache POI (https://poi.apache.org) to convert files. I use this tool within php, since there are only implementations which are (a) too much memory consuming, (b) slow, or (c) don't support all required excel formats. 
 
-# usage
+## usage
 java -jar excel-to-json.jar -s sourcefile [options...]
 
 ```
@@ -11,4 +11,22 @@ java -jar excel-to-json.jar -s sourcefile [options...]
 -empty              Include rows with no data in it.
 -percent            Parse percent values as floats.
 -pretty             To render output as pretty formatted json.
+```
+
+## output
+```
+{
+  "fileName" : "/var/foo/bar/source.xls",
+  "sheets" : [ {
+    "name" : "Sheet 1",
+    "data" : [ [ "foo", "bar", "baz" ], [ "foo", "bar" ]],
+    "maxCols" : 3,
+    "maxRows" : 2
+  }, {
+    "name" : "Sheet 2",
+    "data" : [ [ "foo", "bar" ], [ "foo", "bar" ], [ "foo" ]],
+    "maxCols" : 1,
+    "maxRows" : 3
+  } ]
+}
 ```
