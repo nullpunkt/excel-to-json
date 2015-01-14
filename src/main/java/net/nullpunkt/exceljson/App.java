@@ -22,8 +22,8 @@ public class App {
     {
 		Options options = new Options();
 		options.addOption("s", "source", true, "The source file which should be converted into json.");
-		options.addOption("df", "dateFormat", false, "The template to use for fomatting dates into strings.");
-		options.addOption("?", "help", false, "This help text.");
+		options.addOption("df", "dateFormat", true, "The template to use for fomatting dates into strings.");
+		options.addOption("?", "help", true, "This help text.");
 		options.addOption(new Option("percent", "Parse percent values as floats."));
 		options.addOption(new Option("empty", "Include rows with no data in it."));
 		options.addOption(new Option("pretty", "To render output as pretty formatted json."));
