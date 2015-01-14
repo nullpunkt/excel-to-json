@@ -4,8 +4,7 @@ Command line utility to convert excel files (all of them) to json. Uses Apache P
 # usage
 usage: java -jar excel-to-json.jar
 
- -?,--help           This help text.
- 
+-?,--help           This help text.
  -df,--dateFormat    The template to use for fomatting dates into strings.
  
  -empty              Include rows with no data in it.
@@ -15,5 +14,5 @@ usage: java -jar excel-to-json.jar
  -pretty             To render output as pretty formatted json.
  
  -s,--source <arg>   The source file which should be converted into json.
-                          
+ 
 
