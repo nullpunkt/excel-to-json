@@ -59,7 +59,9 @@ public class ExcelToJsonConverter {
 	    				Object value = cellToObject(cell);
 	    				hasValues = hasValues || value!=null;
 	    				rowData.add(value);
-	    			}        			
+	    			} else {
+                        rowData.add(null);
+                    }
 	    		}
 	    		if(hasValues||!config.isOmitEmpty()) {
 	    			tmp.addRow(rowData);	

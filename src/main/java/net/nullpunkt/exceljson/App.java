@@ -51,9 +51,6 @@ public class App {
 		}
 		
 		ExcelWorkbook book = ExcelToJsonConverter.convert(config);
-		
-//		if(config.)
-		
 		String json = book.toJson(config.isPretty());
 		System.out.println(json);
     }
