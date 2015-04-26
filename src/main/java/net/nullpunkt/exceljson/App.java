@@ -27,6 +27,7 @@ public class App {
 		options.addOption(new Option("percent", "Parse percent values as floats."));
 		options.addOption(new Option("empty", "Include rows with no data in it."));
 		options.addOption(new Option("pretty", "To render output as pretty formatted json."));
+		options.addOption(new Option("fillColumns", "To fill rows with null values until they all have the same size."));
 		
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;

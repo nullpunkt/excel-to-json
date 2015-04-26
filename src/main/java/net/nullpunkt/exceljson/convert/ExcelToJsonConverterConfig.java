@@ -12,6 +12,7 @@ public class ExcelToJsonConverterConfig {
 	private boolean parsePercentAsFloats = false;
 	private boolean omitEmpty = false;
 	private boolean pretty = false;
+	private boolean fillColumns = false;
 	private DateFormat formatDate = null;
 	
 	public static ExcelToJsonConverterConfig create(CommandLine cmd) {
@@ -28,6 +29,7 @@ public class ExcelToJsonConverterConfig {
 		config.parsePercentAsFloats = cmd.hasOption("percent");
 		config.omitEmpty = !cmd.hasOption("empty");
 		config.pretty = cmd.hasOption("pretty");
+		config.fillColumns = cmd.hasOption("fillColumns");
 		
 		return config;
 	}
@@ -87,5 +89,13 @@ public class ExcelToJsonConverterConfig {
 
 	public void setPretty(boolean pretty) {
 		this.pretty = pretty;
+	}
+
+	public boolean isFillColumns() {
+		return fillColumns;
+	}
+
+	public void setFillColumns(boolean fillColumns) {
+		this.fillColumns = fillColumns;
 	}
 }

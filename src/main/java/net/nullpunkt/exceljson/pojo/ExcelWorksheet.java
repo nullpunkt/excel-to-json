@@ -19,6 +19,17 @@ public class ExcelWorksheet {
 		return data.size();
 	}
 	
+	public void fillColumns() {
+		for(ArrayList<Object> tmp: data) {
+			System.out.print(maxCols);
+			while(tmp.size()<maxCols) {
+				System.out.print(tmp.size());
+				tmp.add(null);
+			}
+			System.out.println();
+		}
+	}
+	
 	// GET/SET
 	
 	public String getName() {

@@ -67,6 +67,9 @@ public class ExcelToJsonConverter {
 	    			tmp.addRow(rowData);	
 	    		}
 	    	}
+        	if(config.isFillColumns()) {
+        		tmp.fillColumns();
+        	}
 			book.addExcelWorksheet(tmp);
 		}
 
