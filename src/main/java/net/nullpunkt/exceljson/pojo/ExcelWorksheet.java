@@ -21,12 +21,9 @@ public class ExcelWorksheet {
 	
 	public void fillColumns() {
 		for(ArrayList<Object> tmp: data) {
-			System.out.print(maxCols);
 			while(tmp.size()<maxCols) {
-				System.out.print(tmp.size());
 				tmp.add(null);
 			}
-			System.out.println();
 		}
 	}
 	
