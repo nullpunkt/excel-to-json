@@ -12,6 +12,10 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  * Hello world!
  *
@@ -54,6 +58,16 @@ public class App {
 		ExcelWorkbook book = ExcelToJsonConverter.convert(config);
 		String json = book.toJson(config.isPretty());
 		System.out.println(json);
+		
+		try {
+			File file = new File("data.json");
+			FileWriter fileWriter = new FileWriter(file);
+			fileWriter.write(json);
+			fileWriter.flush();
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
     }
 	
 	private static void help(Options options) {
