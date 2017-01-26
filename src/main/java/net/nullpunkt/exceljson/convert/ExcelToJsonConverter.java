@@ -37,9 +37,17 @@ public class ExcelToJsonConverter {
 		Workbook wb = WorkbookFactory.create(inp);
 
 		book.setFileName(config.getSourceFile());
+		int loopLimit =  wb.getNumberOfSheets();
+		if (config.getNumberOfSheets() > 0 && loopLimit > config.getNumberOfSheets()) {
+			loopLimit = config.getNumberOfSheets();
+		}
+		int rowLimit 			= config.getRowLimit();
+		int startRowOffset 		= config.getRowOffset();
+		int currentRowOffset 	= -1;
+		int totalRowsAdded 		= 0;
 
-		
-		for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+
+		for (int i = 0; i < loopLimit; i++) {
 			Sheet sheet = wb.getSheetAt(i);
 			if (sheet == null) {
 				continue;
@@ -64,7 +72,15 @@ public class ExcelToJsonConverter {
                     }
 	    		}
 	    		if(hasValues||!config.isOmitEmpty()) {
-	    			tmp.addRow(rowData);	
+					currentRowOffset++;
+	    			if (rowLimit > 0 && totalRowsAdded == rowLimit) {
+	    				break;
+					}
+					if (startRowOffset > 0 && currentRowOffset < startRowOffset) {
+	    				continue;
+					}
+	    			tmp.addRow(rowData);
+	    			totalRowsAdded++;
 	    		}
 	    	}
         	if(config.isFillColumns()) {

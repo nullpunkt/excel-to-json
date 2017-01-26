@@ -8,9 +8,13 @@ java -jar excel-to-json.jar -s sourcefile [options...]
 -s,--source <arg>   The source file which should be converted into json.
 -?,--help           This help text.
 -df,--dateFormat    The template to use for fomatting dates into strings.
+-l,--rowLimit <arg>      Limit the max number of rows to read.
+-n,--maxSheets <arg>     Limit the max number of sheets to read.
+-o,--rowOffset <arg>     Set the offset for begin to read.
 -empty              Include rows with no data in it.
 -percent            Parse percent values as floats.
 -pretty             To render output as pretty formatted json.
+
 ```
 
 ## output
@@ -30,3 +34,4 @@ java -jar excel-to-json.jar -s sourcefile [options...]
   } ]
 }
 ```
+
