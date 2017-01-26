@@ -13,8 +13,13 @@ public class ExcelToJsonConverterConfig {
 	private boolean omitEmpty = false;
 	private boolean pretty = false;
 	private boolean fillColumns = false;
+	private int numberOfSheets = 0;
+	private int rowLimit = 0; // 0 -> no limit
+	private int rowOffset = 0;
 	private DateFormat formatDate = null;
-	
+
+
+
 	public static ExcelToJsonConverterConfig create(CommandLine cmd) {
 		ExcelToJsonConverterConfig config = new ExcelToJsonConverterConfig();
 
@@ -25,11 +30,22 @@ public class ExcelToJsonConverterConfig {
 		if(cmd.hasOption("df")) {
 			config.formatDate = new SimpleDateFormat(cmd.getOptionValue("df"));
 		}
+		if (cmd.hasOption("n")) {
+			config.setNumberOfSheets(Integer.valueOf(cmd.getOptionValue("n")));
+		}
+
+		if (cmd.hasOption("l")) {
+			config.setRowLimit(Integer.valueOf(cmd.getOptionValue("l")));
+		}
+		if (cmd.hasOption("o")) {
+			config.setRowOffset(Integer.valueOf(cmd.getOptionValue("o")));
+		}
 		
 		config.parsePercentAsFloats = cmd.hasOption("percent");
 		config.omitEmpty = !cmd.hasOption("empty");
 		config.pretty = cmd.hasOption("pretty");
 		config.fillColumns = cmd.hasOption("fillColumns");
+
 		
 		return config;
 	}
@@ -45,12 +61,36 @@ public class ExcelToJsonConverterConfig {
 		if(!file.canRead()) {
 			return "Source file is not readable.";
 		}
-		
+
 		return null;
 	}
 	
 	// GET/SET
-	
+
+	public int getRowLimit() {
+		return rowLimit;
+	}
+
+	public void setRowLimit(int rowLimit) {
+		this.rowLimit = rowLimit;
+	}
+
+	public int getRowOffset() {
+		return rowOffset;
+	}
+
+	public void setRowOffset(int rowOffset) {
+		this.rowOffset = rowOffset;
+	}
+
+	public int getNumberOfSheets()
+	{
+		return numberOfSheets;
+	}
+	public void setNumberOfSheets(int numberOfSheets)
+	{
+		this.numberOfSheets = numberOfSheets;
+	}
 	public String getSourceFile() {
 		return sourceFile;
 	}
