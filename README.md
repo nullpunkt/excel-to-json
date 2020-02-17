@@ -11,6 +11,7 @@ java -jar excel-to-json.jar -s sourcefile [options...]
 -l,--rowLimit <arg>      Limit the max number of rows to read.
 -n,--maxSheets <arg>     Limit the max number of sheets to read.
 -o,--rowOffset <arg>     Set the offset for begin to read.
+-d,--destination <arg>     The destination directory where the output.json should be created.
 -empty              Include rows with no data in it.
 -percent            Parse percent values as floats.
 -pretty             To render output as pretty formatted json.

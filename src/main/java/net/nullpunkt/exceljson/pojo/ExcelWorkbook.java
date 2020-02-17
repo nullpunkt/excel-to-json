@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.google.gson.GsonBuilder;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -17,12 +18,14 @@ public class ExcelWorkbook {
 		sheets.add(sheet);
 	}
 	
-	public String toJson(boolean pretty) {
+	public String toJson(boolean pretty, boolean isWriteToFile) {
 		try {
-			if(pretty) {
-				return new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(this);	
+			if(pretty && isWriteToFile) {
+				return new GsonBuilder().setPrettyPrinting().create().toJson(this);
+			} else if(pretty) {
+				return new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(this);
 			} else {
-				return new ObjectMapper().writer().withPrettyPrinter(null).writeValueAsString(this);	
+				return new ObjectMapper().writer().withPrettyPrinter(null).writeValueAsString(this);
 			}
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
