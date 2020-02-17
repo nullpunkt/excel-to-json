@@ -5,16 +5,16 @@ Command line utility to convert excel files (all of them) to json. Uses Apache P
 java -jar excel-to-json.jar -s sourcefile [options...]
 
 ```
--s,--source <arg>			The source file which should be converted into json.
--?,--help					This help text.
--df,--dateFormat			The template to use for fomatting dates into strings.
--l,--rowLimit <arg>			Limit the max number of rows to read.
--n,--maxSheets <arg>		Limit the max number of sheets to read.
--o,--rowOffset <arg>		Set the offset for begin to read.
--d,--destination <arg>		The destination directory where the output.json should be created.
--empty						Include rows with no data in it.
--percent					Parse percent values as floats.
--pretty						To render output as pretty formatted json.
+-s,--source <arg>   The source file which should be converted into json.
+-?,--help           This help text.
+-df,--dateFormat    The template to use for fomatting dates into strings.
+-l,--rowLimit <arg>      Limit the max number of rows to read.
+-n,--maxSheets <arg>     Limit the max number of sheets to read.
+-o,--rowOffset <arg>     Set the offset for begin to read.
+-d,--destination <arg>     The destination directory where the output.json should be created.
+-empty              Include rows with no data in it.
+-percent            Parse percent values as floats.
+-pretty             To render output as pretty formatted json.
 
 ```
 
