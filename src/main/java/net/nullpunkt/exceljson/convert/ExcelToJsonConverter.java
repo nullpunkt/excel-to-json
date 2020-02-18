@@ -137,6 +137,6 @@ public class ExcelToJsonConverter {
 			}
 			return cell.getDateCellValue();
 		}
-		return Double.valueOf(cell.getNumericCellValue());
+		return cell.getNumericCellValue();
 	}
 }
