@@ -1,6 +1,7 @@
 package net.nullpunkt.exceljson.convert;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -17,7 +18,8 @@ public class ExcelToJsonConverterConfig {
 	private int rowLimit = 0; // 0 -> no limit
 	private int rowOffset = 0;
 	private DateFormat formatDate = null;
-
+	private String destinationFile;
+	private boolean writeToFile = false;
 
 
 	public static ExcelToJsonConverterConfig create(CommandLine cmd) {
@@ -30,15 +32,22 @@ public class ExcelToJsonConverterConfig {
 		if(cmd.hasOption("df")) {
 			config.formatDate = new SimpleDateFormat(cmd.getOptionValue("df"));
 		}
+
 		if (cmd.hasOption("n")) {
-			config.setNumberOfSheets(Integer.valueOf(cmd.getOptionValue("n")));
+			config.setNumberOfSheets(Integer.parseInt(cmd.getOptionValue("n")));
 		}
 
 		if (cmd.hasOption("l")) {
-			config.setRowLimit(Integer.valueOf(cmd.getOptionValue("l")));
+			config.setRowLimit(Integer.parseInt(cmd.getOptionValue("l")));
 		}
+
 		if (cmd.hasOption("o")) {
-			config.setRowOffset(Integer.valueOf(cmd.getOptionValue("o")));
+			config.setRowOffset(Integer.parseInt(cmd.getOptionValue("o")));
+		}
+
+		if(cmd.hasOption("d")) {
+			config.setDestinationFile(cmd.getOptionValue("d"));
+			config.setWriteToFile(true);
 		}
 		
 		config.parsePercentAsFloats = cmd.hasOption("percent");
@@ -46,7 +55,6 @@ public class ExcelToJsonConverterConfig {
 		config.pretty = cmd.hasOption("pretty");
 		config.fillColumns = cmd.hasOption("fillColumns");
 
-		
 		return config;
 	}
 	
@@ -61,7 +69,13 @@ public class ExcelToJsonConverterConfig {
 		if(!file.canRead()) {
 			return "Source file is not readable.";
 		}
-
+		if(destinationFile != null) {
+			file = new File(destinationFile);
+			if(!file.isDirectory()) {
+				return "Destination path is not a valid directory.";
+			}
+			this.setDestinationFile(Paths.get(this.getDestinationFile(),"output.json").toString());
+		}
 		return null;
 	}
 	
@@ -87,10 +101,12 @@ public class ExcelToJsonConverterConfig {
 	{
 		return numberOfSheets;
 	}
+
 	public void setNumberOfSheets(int numberOfSheets)
 	{
 		this.numberOfSheets = numberOfSheets;
 	}
+
 	public String getSourceFile() {
 		return sourceFile;
 	}
@@ -137,5 +153,21 @@ public class ExcelToJsonConverterConfig {
 
 	public void setFillColumns(boolean fillColumns) {
 		this.fillColumns = fillColumns;
+	}
+
+	public String getDestinationFile() {
+		return destinationFile;
+	}
+
+	public void setDestinationFile(String destinationFile) {
+		this.destinationFile = destinationFile;
+	}
+
+	public boolean isWriteToFile() {
+		return writeToFile;
+	}
+
+	public void setWriteToFile(boolean writeToFile) {
+		this.writeToFile = writeToFile;
 	}
 }
