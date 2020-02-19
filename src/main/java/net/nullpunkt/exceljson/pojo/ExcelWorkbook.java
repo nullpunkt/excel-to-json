@@ -21,7 +21,7 @@ public class ExcelWorkbook {
 	public String toJson(boolean pretty, boolean isWriteToFile) {
 		try {
 			if(pretty && isWriteToFile) {
-				return new GsonBuilder().setPrettyPrinting().create().toJson(this);
+				return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(this);
 			} else if(pretty) {
 				return new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(this);
 			} else {
